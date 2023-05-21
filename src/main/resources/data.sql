@@ -1,0 +1,3 @@
+insert into person (birthday, created_on, first_name, last_name, updated_on) values ('2001-10-10 11:30:30', '2022-08-07 19:47:36.072253', 'TestUser1 firstname', 'TestUser1 lastname', '2022-08-07 19:47:36.072253');
+
+insert into person (birthday, created_on, first_name, last_name, updated_on) values ('2002-10-10 11:30:30', '2022-08-07 02:47:36.072253', 'TestUser2 firstname', 'TestUser2 lastname', '2022-08-07 15:31:36.072253');
