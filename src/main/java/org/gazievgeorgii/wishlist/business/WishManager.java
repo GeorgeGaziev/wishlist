@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -19,14 +20,16 @@ public class WishManager {
     private WishRepository wishRepository;
 
     @Transactional
-    public Long addWishToPerson(Person person) {
+    public Wish addMockWishToPerson(Person person) {
         log.info("About to add a wish..");
         Wish wish = new Wish();
         wish.setOwner(person);
-        wish.setDescription("Testing wish description");
-        wish.setComment("Testing wish comment");
+        wish.setDescription("Testing wish description " + System.currentTimeMillis());
+        wish.setComment("Testing wish comment " + System.currentTimeMillis());
         wish.setStatus(WishStatus.NEW);
-        return wishRepository.save(wish).getId();
+        wish.setCreatedOn(LocalDateTime.now());
+        wish.setUpdatedOn(LocalDateTime.now());
+        return wishRepository.save(wish);
     }
 
     @Transactional
