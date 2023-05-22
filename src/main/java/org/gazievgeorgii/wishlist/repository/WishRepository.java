@@ -9,4 +9,9 @@ import java.util.List;
 @Repository
 public interface WishRepository extends CrudRepository<Wish, Long> {
     List<Wish> findAll();
+
+    default Wish findByIdExact(Long id) {
+        return findById(id)
+                .orElseThrow(() -> new RuntimeException("Failed to find a wish with id [" + id + "]"));
+    }
 }

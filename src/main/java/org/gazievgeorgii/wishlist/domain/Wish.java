@@ -33,6 +33,6 @@ public class Wish {
     private String comment;
     private LocalDateTime createdOn;
     private LocalDateTime updatedOn;
-    @ManyToOne(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = {CascadeType.REFRESH}, fetch = FetchType.EAGER)
     private Person owner;
 }

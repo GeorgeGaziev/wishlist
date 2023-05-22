@@ -35,6 +35,6 @@ public class Person {
     private LocalDate birthday;
     private LocalDateTime createdOn;
     private LocalDateTime updatedOn;
-    @OneToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "owner")
+    @OneToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.EAGER, mappedBy = "owner")
     private List<Wish> wishList;
 }

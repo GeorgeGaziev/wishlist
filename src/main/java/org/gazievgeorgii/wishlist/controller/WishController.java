@@ -1,7 +1,7 @@
 package org.gazievgeorgii.wishlist.controller;
 
-import org.gazievgeorgii.wishlist.business.PersonManager;
-import org.gazievgeorgii.wishlist.domain.Person;
+import org.gazievgeorgii.wishlist.business.WishManager;
+import org.gazievgeorgii.wishlist.domain.Wish;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,41 +14,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 @RestController
-@RequestMapping("/api/persons")
-public class PersonController {
+@RequestMapping("/api")
+public class WishController {
     @Autowired
-    private PersonManager personManager;
+    private WishManager wishManager;
 
-    @GetMapping
-    @ResponseStatus(HttpStatus.OK)
-    public List<Person> getPersons() {
-        return personManager.findAll();
-    }
-
-    @PostMapping
+    @PostMapping("/persons/{personId}/wishes")
     @ResponseStatus(HttpStatus.CREATED)
-    public Person createPerson(@RequestBody Person person) {
-        return personManager.addPerson(person);
+    public Wish createWish(@RequestBody Wish wish, @PathVariable Long personId) {
+        return wishManager.addWishToPerson(wish, personId);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/persons/{personId}/wishes/{wishId}")
     @ResponseStatus(HttpStatus.OK)
-    public Person getPersonById(@PathVariable Long id) {
-        return personManager.findByIdExact(id);
+    public Wish getWish(@PathVariable Long wishId){
+        return wishManager.findById(wishId);
     }
 
-    @PutMapping
+    @PutMapping("/persons/{personId}/wishes")
     @ResponseStatus(HttpStatus.OK)
-    public Person updatePerson(@RequestBody Person person) {
-        return personManager.updatePerson(person);
+    public Wish updateWish(@RequestBody Wish wish, @PathVariable Long personId) {
+        return wishManager.updateWish(wish);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/persons/{personId}/wishes/{wishId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deletePerson(@PathVariable Long id) {
-        personManager.deletePerson(id);
+    public void deleteWish(@PathVariable Long wishId) {
+        wishManager.deleteWish(wishId);
     }
 }

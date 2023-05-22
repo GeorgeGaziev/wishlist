@@ -42,6 +42,6 @@ class PersonManagerTest {
         assertThat(updatedPerson.getLastName()).isEqualTo(person.getLastName());
         assertThat(updatedPerson.getBirthday()).isEqualTo(person.getBirthday());
         assertThat(updatedPerson.getId()).isEqualTo(person.getId());
-        assertThat(updatedPerson.getWishList()).isEqualTo(person.getWishList());
+        assertThat(updatedPerson.getWishList()).hasSameElementsAs(person.getWishList());
     }
 }
