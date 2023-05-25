@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wishlist</title>
+</head>
+<body>
+<h1>Welcome to Wishlist main page!</h1>
+
+<a href="/person/add">Create a new user</a>
+<div th:each="person : ${persons}">
+    <h3 th:text="${person.firstname + ' ' + person.lastname}"></h3>
+<!--    <a href="/person/${person}/wishes/add">Create a new wish</a>-->
+    <h4>Wishes for:</h4>
+    <div th:each="wish : ${person.wishes}">
+        <ol>
+            <li th:text="${wish.description}"></li>
+            <li th:text="${wish.status}"></li>
+        </ol>
+    </div>
+</div>
+
+</body>
+</html>

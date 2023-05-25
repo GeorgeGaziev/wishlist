@@ -1,4 +1,4 @@
-package org.gazievgeorgii.wishlist.controller;
+package org.gazievgeorgii.wishlist.controller.rest;
 
 import org.gazievgeorgii.wishlist.business.PersonManager;
 import org.gazievgeorgii.wishlist.domain.Person;

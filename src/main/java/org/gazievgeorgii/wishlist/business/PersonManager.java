@@ -21,10 +21,10 @@ public class PersonManager {
     public Person addMockPerson() {
         log.info("addMockPerson is called");
         Person person = new Person();
-        person.setFirstName("Test firstname " + System.currentTimeMillis());
-        person.setLastName("Test lastname " + System.currentTimeMillis());
+        person.setFirstname("Test firstname " + System.currentTimeMillis());
+        person.setLastname("Test lastname " + System.currentTimeMillis());
         person.setBirthday(LocalDate.of(1999, 3, 10));
-        person.setWishList(new ArrayList<>());
+        person.setWishes(new ArrayList<>());
         person.setCreatedOn(LocalDateTime.now());
         person.setUpdatedOn(LocalDateTime.now());
         return personRepository.save(person);
@@ -41,9 +41,9 @@ public class PersonManager {
         log.info("updatePerson is called");
         Person savedPerson = personRepository.findByIdExact(person.getId());
         savedPerson.setBirthday(person.getBirthday());
-        savedPerson.setFirstName(person.getFirstName());
-        savedPerson.setLastName(person.getLastName());
-        savedPerson.setWishList(person.getWishList());
+        savedPerson.setFirstname(person.getFirstname());
+        savedPerson.setLastname(person.getLastname());
+        savedPerson.setWishes(person.getWishes());
 
         savedPerson.setUpdatedOn(LocalDateTime.now());
         return personRepository.save(savedPerson);

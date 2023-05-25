@@ -5,8 +5,8 @@ create table person (
  id bigserial not null,
  birthday date not null,
  created_on timestamp(6),
- first_name varchar(50) not null,
- last_name varchar(50) not null,
+ firstname varchar(50) not null,
+ lastname varchar(50) not null,
  updated_on timestamp(6),
  primary key (id));
 

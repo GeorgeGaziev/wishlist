@@ -27,14 +27,14 @@ public class Person {
     private Long id;
     @NotNull
     @Size(min = 1, max = 50)
-    private String firstName;
+    private String firstname;
     @NotNull
     @Size(min = 1, max = 50)
-    private String lastName;
+    private String lastname;
     @NotNull
     private LocalDate birthday;
     private LocalDateTime createdOn;
     private LocalDateTime updatedOn;
     @OneToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.EAGER, mappedBy = "owner")
-    private List<Wish> wishList;
+    private List<Wish> wishes;
 }

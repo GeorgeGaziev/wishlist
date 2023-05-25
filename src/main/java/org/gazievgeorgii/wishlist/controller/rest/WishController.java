@@ -1,4 +1,4 @@
-package org.gazievgeorgii.wishlist.controller;
+package org.gazievgeorgii.wishlist.controller.rest;
 
 import org.gazievgeorgii.wishlist.business.WishManager;
 import org.gazievgeorgii.wishlist.domain.Wish;

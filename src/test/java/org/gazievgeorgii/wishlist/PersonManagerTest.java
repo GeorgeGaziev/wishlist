@@ -3,7 +3,6 @@ package org.gazievgeorgii.wishlist;
 import org.gazievgeorgii.wishlist.business.PersonManager;
 import org.gazievgeorgii.wishlist.business.WishManager;
 import org.gazievgeorgii.wishlist.domain.Person;
-import org.gazievgeorgii.wishlist.domain.Wish;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -34,14 +33,14 @@ class PersonManagerTest {
     @Test
     public void updatePersonTest() {
         Person person = personManager.addMockPerson();
-        person.setFirstName("Updated firstname for " + person.getId());
-        person.setLastName("Updated lastname for " + person.getId());
+        person.setFirstname("Updated firstname for " + person.getId());
+        person.setLastname("Updated lastname for " + person.getId());
         Person updatedPerson = personManager.updatePerson(person);
 
-        assertThat(updatedPerson.getFirstName()).isEqualTo(person.getFirstName());
-        assertThat(updatedPerson.getLastName()).isEqualTo(person.getLastName());
+        assertThat(updatedPerson.getFirstname()).isEqualTo(person.getFirstname());
+        assertThat(updatedPerson.getLastname()).isEqualTo(person.getLastname());
         assertThat(updatedPerson.getBirthday()).isEqualTo(person.getBirthday());
         assertThat(updatedPerson.getId()).isEqualTo(person.getId());
-        assertThat(updatedPerson.getWishList()).hasSameElementsAs(person.getWishList());
+        assertThat(updatedPerson.getWishes()).hasSameElementsAs(person.getWishes());
     }
 }
