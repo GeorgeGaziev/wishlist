@@ -1,7 +1,7 @@
 package org.gazievgeorgii.wishlist.controller.rest;
 
 import org.gazievgeorgii.wishlist.business.WishManager;
-import org.gazievgeorgii.wishlist.domain.Wish;
+import org.gazievgeorgii.wishlist.domain.dto.WishDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/persons")
@@ -24,26 +25,26 @@ public class WishController {
 
     @PostMapping("/{personId}/wishes")
     @ResponseStatus(HttpStatus.CREATED)
-    public Wish createWish(@RequestBody Wish wish, @PathVariable Long personId) {
-        return wishManager.addWishToPerson(wish, personId);
+    public WishDto createWish(@RequestBody WishDto wishDto, @PathVariable Long personId) {
+        return new WishDto(wishManager.addWishToPerson(wishDto.toWishEntity(), personId));
     }
 
     @GetMapping("/{personId}/wishes/{wishId}")
     @ResponseStatus(HttpStatus.OK)
-    public Wish getWish(@PathVariable Long wishId) {
-        return wishManager.findById(wishId);
+    public WishDto getWish(@PathVariable Long wishId) {
+        return new WishDto(wishManager.findById(wishId));
     }
 
     @GetMapping("/{personId}/wishes")
     @ResponseStatus(HttpStatus.OK)
-    public List<Wish> getWishes() {
-        return wishManager.findAll();
+    public List<WishDto> getWishes() {
+        return wishManager.findAll().stream().map(WishDto::new).collect(Collectors.toList());
     }
 
     @PutMapping("/{personId}/wishes")
     @ResponseStatus(HttpStatus.OK)
-    public Wish updateWish(@RequestBody Wish wish, @PathVariable Long personId) {
-        return wishManager.updateWish(wish);
+    public WishDto updateWish(@RequestBody WishDto wishDto, @PathVariable Long personId) {
+        return new WishDto(wishManager.updateWish(wishDto.toWishEntity()));
     }
 
     @DeleteMapping("/{personId}/wishes/{wishId}")
