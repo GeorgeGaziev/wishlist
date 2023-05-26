@@ -7,16 +7,14 @@
 <body>
 <h1>Welcome to Wishlist main page!</h1>
 
-<a href="/person/add">Create a new user</a>
+<a href="/persons/add">Create a new user</a>
 <div th:each="person : ${persons}">
     <h3 th:text="${person.firstname + ' ' + person.lastname}"></h3>
-<!--    <a href="/person/${person}/wishes/add">Create a new wish</a>-->
+    <a th:href="@{/persons/{personId}/wishes/add(personId=${person.id})}">Create a new wish</a>
     <h4>Wishes for:</h4>
     <div th:each="wish : ${person.wishes}">
-        <ol>
-            <li th:text="${wish.description}"></li>
-            <li th:text="${wish.status}"></li>
-        </ol>
+        <span th:text="'Description: ' + ${wish.description}"></span>
+        <span th:text="'Status: ' + ${wish.status}"></span>
     </div>
 </div>
 

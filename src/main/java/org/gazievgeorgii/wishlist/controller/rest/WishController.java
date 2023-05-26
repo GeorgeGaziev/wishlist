@@ -14,31 +14,39 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/persons")
 public class WishController {
     @Autowired
     private WishManager wishManager;
 
-    @PostMapping("/persons/{personId}/wishes")
+    @PostMapping("/{personId}/wishes")
     @ResponseStatus(HttpStatus.CREATED)
     public Wish createWish(@RequestBody Wish wish, @PathVariable Long personId) {
         return wishManager.addWishToPerson(wish, personId);
     }
 
-    @GetMapping("/persons/{personId}/wishes/{wishId}")
+    @GetMapping("/{personId}/wishes/{wishId}")
     @ResponseStatus(HttpStatus.OK)
-    public Wish getWish(@PathVariable Long wishId){
+    public Wish getWish(@PathVariable Long wishId) {
         return wishManager.findById(wishId);
     }
 
-    @PutMapping("/persons/{personId}/wishes")
+    @GetMapping("/{personId}/wishes")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Wish> getWishes() {
+        return wishManager.findAll();
+    }
+
+    @PutMapping("/{personId}/wishes")
     @ResponseStatus(HttpStatus.OK)
     public Wish updateWish(@RequestBody Wish wish, @PathVariable Long personId) {
         return wishManager.updateWish(wish);
     }
 
-    @DeleteMapping("/persons/{personId}/wishes/{wishId}")
+    @DeleteMapping("/{personId}/wishes/{wishId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteWish(@PathVariable Long wishId) {
         wishManager.deleteWish(wishId);

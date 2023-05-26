@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wishlist</title>
+</head>
+<body>
+<form th:object="${wish}" th:action="@{'/persons/' + ${personId} + '/wishes/add'}" method="post">
+    <div>
+        <label for="description">Description:</label>
+        <input id="description" th:field="${wish.description}" type="text"/>
+    </div>
+    <div>
+        <label for="comment">Comment:</label>
+        <input id="comment" th:field="${wish.comment}" type="text"/>
+    </div>
+    <div>
+        <input type="submit">
+    </div>
+</form>
+</body>
+</html>

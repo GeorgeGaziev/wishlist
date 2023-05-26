@@ -46,6 +46,9 @@ public class WishManager {
     public Wish addWishToPerson(Wish wish, Long personId) {
         Person owner = personRepository.findByIdExact(personId);
         wish.setOwner(owner);
+        wish.setStatus(WishStatus.NEW);
+        wish.setCreatedOn(LocalDateTime.now());
+        wish.setUpdatedOn(LocalDateTime.now());
         return wishRepository.save(wish);
     }
 
