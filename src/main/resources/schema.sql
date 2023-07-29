@@ -1,8 +1,8 @@
-drop table if exists person cascade;
 drop table if exists wish cascade;
+drop table if exists person cascade;
 
 create table person (
- id bigserial not null,
+ id serial not null,
  birthday date not null,
  created_on timestamp(6),
  firstname varchar(50) not null,
@@ -11,11 +11,11 @@ create table person (
  primary key (id));
 
 create table wish (
- id bigserial not null,
- comment varchar(50) not null,
- created_on timestamp(6),
- description varchar(50) not null,
- status varchar(255),
- updated_on timestamp(6),
+ id serial not null,
  owner_id bigint,
+ comment varchar(255) not null,
+ description varchar(50) not null,
+ status varchar(20),
+ created_on timestamp(6),
+ updated_on timestamp(6),
  primary key (id));

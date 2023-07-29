@@ -13,6 +13,8 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -26,13 +28,16 @@ public class Wish {
     @NotNull
     @Size(min = 1, max = 50)
     private String description;
-    @Enumerated(EnumType.STRING)
-    private WishStatus status;
     @NotNull
     @Size(min = 1, max = 50)
     private String comment;
+    @Enumerated(EnumType.STRING)
+    private WishStatus status;
+    @CreationTimestamp
     private LocalDateTime createdOn;
+    @UpdateTimestamp
     private LocalDateTime updatedOn;
+
     @ManyToOne(cascade = {CascadeType.REFRESH}, fetch = FetchType.EAGER)
     private Person owner;
 }
