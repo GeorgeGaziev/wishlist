@@ -52,7 +52,7 @@ public class PersonController {
     }
 
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ResponseStatus(HttpStatus.OK)
     public void deletePerson(@PathVariable Long id) {
         personManager.deletePerson(id);
     }
