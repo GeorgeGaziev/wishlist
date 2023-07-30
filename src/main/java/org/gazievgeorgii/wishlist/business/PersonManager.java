@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -55,6 +56,10 @@ public class PersonManager {
 
     public Person findByIdExact(Long id) {
         return personRepository.findByIdExact(id);
+    }
+
+    public Optional<Person> findById(Long id) {
+        return personRepository.findById(id);
     }
 
     public void deletePerson(Long id) {

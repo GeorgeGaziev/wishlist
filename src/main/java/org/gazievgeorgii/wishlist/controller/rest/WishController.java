@@ -31,25 +31,25 @@ public class WishController {
 
     @GetMapping("/{personId}/wishes/{wishId}")
     @ResponseStatus(HttpStatus.OK)
-    public WishDto getWish(@PathVariable Long wishId) {
-        return new WishDto(wishManager.findById(wishId));
+    public WishDto getWish(@PathVariable Long personId,@PathVariable Long wishId) {
+        return new WishDto(wishManager.findByOwnerIdAndWishId(personId, wishId));
     }
 
     @GetMapping("/{personId}/wishes")
     @ResponseStatus(HttpStatus.OK)
-    public List<WishDto> getWishes() {
-        return wishManager.findAll().stream().map(WishDto::new).collect(Collectors.toList());
+    public List<WishDto> getWishes(@PathVariable Long personId) {
+        return wishManager.findByOwnerId(personId).stream().map(WishDto::new).collect(Collectors.toList());
     }
 
-    @PutMapping("/{personId}/wishes")
+    @PutMapping("/{personId}/wishes/{wishId}")
     @ResponseStatus(HttpStatus.OK)
-    public WishDto updateWish(@RequestBody WishDto wishDto, @PathVariable Long personId) {
-        return new WishDto(wishManager.updateWish(wishDto.toWishEntity()));
+    public WishDto updateWish(@RequestBody WishDto wishDto, @PathVariable Long personId, @PathVariable Long wishId) {
+        return new WishDto(wishManager.updateWishById(wishDto.toWishEntity(), personId, wishId));
     }
 
     @DeleteMapping("/{personId}/wishes/{wishId}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteWish(@PathVariable Long wishId) {
-        wishManager.deleteWish(wishId);
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteWish(@PathVariable Long personId, @PathVariable Long wishId) {
+        wishManager.deleteWish(personId, wishId);
     }
 }

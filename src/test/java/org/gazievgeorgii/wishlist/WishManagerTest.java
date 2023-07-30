@@ -34,7 +34,7 @@ class WishManagerTest {
     }
 
     @Test
-    public void updateWishTest(){
+    public void updateWishTest() {
         Person mockPerson = personManager.addMockPerson();
         Wish wish = wishManager.addMockWishToPerson(mockPerson);
         LocalDateTime initialUpdateTime = LocalDateTime.now();
@@ -47,8 +47,7 @@ class WishManagerTest {
         wish.setDescription(updatedDescription);
         wish.setComment(updatedComment);
 
-        wishManager.updateWish(wish);
-        Wish updatedWish = wishManager.findById(wish.getId());
+        Wish updatedWish = wishManager.updateWish(wish);
         assertThat(updatedWish.getStatus()).isEqualTo(updatedStatus);
         assertThat(updatedWish.getDescription()).isEqualTo(updatedDescription);
         assertThat(updatedWish.getComment()).isEqualTo(updatedComment);

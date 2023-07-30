@@ -45,9 +45,9 @@ public class PersonController {
         return new PersonDto(personManager.findByIdExact(id));
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public PersonDto updatePerson(@RequestBody PersonDto person) {
+    public PersonDto updatePerson(@RequestBody PersonDto person, @PathVariable Long id) {
         return new PersonDto(personManager.updatePerson(person.toPersonEntity()));
     }
 
