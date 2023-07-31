@@ -1,5 +1,6 @@
 package org.gazievgeorgii.wishlist.controller.rest;
 
+import lombok.extern.slf4j.Slf4j;
 import org.gazievgeorgii.wishlist.business.WishManager;
 import org.gazievgeorgii.wishlist.domain.dto.WishDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/persons")
+@Slf4j
 public class WishController {
     @Autowired
     private WishManager wishManager;
@@ -31,7 +33,7 @@ public class WishController {
 
     @GetMapping("/{personId}/wishes/{wishId}")
     @ResponseStatus(HttpStatus.OK)
-    public WishDto getWish(@PathVariable Long personId,@PathVariable Long wishId) {
+    public WishDto getWish(@PathVariable Long personId, @PathVariable Long wishId) {
         return new WishDto(wishManager.findByOwnerIdAndWishId(personId, wishId));
     }
 

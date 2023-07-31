@@ -20,5 +20,4 @@ public interface WishRepository extends CrudRepository<Wish, Long> {
 
     Optional<Wish> findByOwnerIdAndId(Long ownerId, Long Id);
 
-    void deleteByOwnerIdAndId(Long ownerId, Long Id);
 }

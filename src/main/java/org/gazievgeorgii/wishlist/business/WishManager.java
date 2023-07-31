@@ -76,8 +76,7 @@ public class WishManager {
     }
 
     public void deleteWish(Long personId, Long wishId) {
-        //to check whether wish belongs to a person
         var wish = findByOwnerIdAndWishId(personId, wishId);
-        wishRepository.deleteByOwnerIdAndId(personId, wishId);
+        wishRepository.delete(wish);
     }
 }
